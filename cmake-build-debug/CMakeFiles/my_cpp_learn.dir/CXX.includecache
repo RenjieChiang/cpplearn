@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/tianbot/my_cpp_learn/src/mycpp.h
+iostream
+/home/tianbot/my_cpp_learn/src/iostream
+
+/home/tianbot/my_cpp_learn/src/mycppmain.cpp
+mycpp.h
+/home/tianbot/my_cpp_learn/src/mycpp.h
+iostream
+/home/tianbot/my_cpp_learn/src/iostream
+
