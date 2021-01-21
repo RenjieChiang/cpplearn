@@ -51,32 +51,115 @@
 //    }
 //    os.setf(initial);
 //}
-void setGolf(golf & golf_ , const char * fullname_ , int handicap_)
+//void setGolf(golf & golf_ , const std::string fullname_ , int handicap_)
+//{
+//    golf_.fullname = fullname_;
+//    golf_.handicap = handicap_;
+//}
+//
+//int setGolf(golf & golf_)
+//{
+//    std::cout<<"enter fullname  IF ENTER NOTHING --> QUIT"<<std::endl;
+//    std::string fullname_;
+//    getline(std::cin, fullname_);
+//    if (fullname_.empty())return 0;
+//    std::cout<<"enter handicap"<<std::endl;
+//    int handicap_;
+//    std::cin>>handicap_;
+//    std::cin.get();
+//    setGolf(golf_, fullname_, handicap_);
+//    return 1;
+//}
+//
+//void handicap(golf & golf_ , int handicap_)
+//{
+//    golf_.handicap = handicap_;
+//}
+//
+//void showGolf(const golf & golf_)
+//{
+//    std::cout<<"    fullname  "<<golf_.fullname<<"  handicap:  "<<golf_.handicap<<std::endl;
+//}
+void SALES::Sales::calculate(int n )
 {
-    strcpy(golf_.fullname , fullname_);
-    golf_.handicap = handicap_;
+    double sum;
+    if (n == 1)
+    {
+       sum = average = max = min = sales[0];
+    }
+    else
+        {
+        sum = average = max = min = sales[0];
+        for (int i = 0; i < n-1; ++i)
+        {
+           max = max > sales[i+1] ? max : sales[i+1];
+           min = min < sales[i+1] ? min : sales[i+1];
+           sum += sales[i+1];
+        }
+        average = sum/n;
+        }
 }
 
-int setGolf(golf & golf_)
+void SALES::Sales::setSales()
 {
-    std::cout<<"enter fullname  IF ENTER NOTHING --> QUIT"<<std::endl;
-    char fullname_[Len];
-    std::cin.getline(fullname_, Len);
-    if (fullname_[0] == '\0' )return 0;
-    std::cout<<"enter handicap"<<std::endl;
-    int handicap_;
-    std::cin>>handicap_;
-    std::cin.get();
-    setGolf(golf_, fullname_, handicap_);
-    return 1;
+    std::string inputSales;
+//    std::stringstream stringStream(inputSales);//流方法!!!!
+    int n = 0;
+    for (int i = 0; i < 4; ++i)
+    {
+        std::cout<<"input No."<<i+1<<" data(less than 4), or q to quit!"<<std::endl;
+        std::getline(std::cin, inputSales);
+        if (inputSales[0] == 'q')break;
+        std::stringstream stringstream(inputSales);
+        stringstream>>sales[i];
+        n++;
+    }
+//    std::stringstream stringStream(inputSales);//流方法!!!!
+//    int i = 0;
+//    int n_temp = n;
+//    while (n_temp--)
+//    {
+//        stringStream>>sales[i];
+//        i++;
+//    }
+// WRONG!!!
+    do{
+        if (n == 0)
+        {
+            std::cout<<"quit...";
+            break;
+        }
+        calculate(n);
+    } while (0);
+}
+void SALES::Sales::setSales(const double *saleData, int n)
+{
+    for (int i = 0; i < n; ++i)
+    {
+        sales[i] = saleData[i];
+    }
+    calculate(n);
 }
 
-void handicap(golf & golf_ , int handicap_)
+void SALES::Sales::showSales()
 {
-    golf_.handicap = handicap_;
+    std::cout<<"    average:    "<<average<<std::endl;
+    std::cout<<"    max:    "<<max<<std::endl;
+    std::cout<<"    min:    "<<min<<std::endl;
+    for (int i = 0; i < QUARTERS; ++i)
+    {
+        std::cout<<"sales data No."<<i+1<<"     "<<sales[i]<<std::endl;
+    }
 }
 
-void showGolf(const golf & golf_)
+SALES::Sales::Sales()
 {
-    std::cout<<"    fullname  "<<golf_.fullname<<"  handicap:  "<<golf_.handicap<<std::endl;
+    for (int i = 0; i < QUARTERS; ++i) {
+        sales[i] = 0;
+    }
+    average = 0;
+    max = 0;
+    min = 0;
 }
+
+SALES::Sales::~Sales() {}

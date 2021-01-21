@@ -1,6 +1,6 @@
 #include  "mycpp.h"
 //const int LIMIT = 5;
-const int length = 10;
+//const int length = 10;
 int main()
 {
 //    std::ofstream fout;
@@ -24,15 +24,22 @@ int main()
 //    file_it(fout, objective, eps, LIMIT);
 //    file_it(std::cout, objective, eps, LIMIT);
 //    std::cout<<"done!"<<std::endl;
-    const char * no_1 = "Cast Peter";
-    int handicapNo_1 = 10 ;
-    golf golfNo_1;
-    setGolf(golfNo_1, no_1, handicapNo_1);
-    showGolf(golfNo_1);
-    golf golfMy[length];
-    for (int i = 0; i < length; i++)
-    {
-        if(!setGolf(golfMy[i]))break;
-    }
+//    const std::string no_1 = "Cast Peter";
+//    int handicapNo_1 = 10 ;
+//    golf golfNo_1;
+//    setGolf(golfNo_1, no_1, handicapNo_1);
+//    showGolf(golfNo_1);
+//    golf golfMy[length];
+//    for (int i = 0; i < length; i++)
+//    {
+//        if(!setGolf(golfMy[i]))break;
+//    }
+    SALES::Sales Peter;
+    SALES::Sales Tom;
+    double saleData[4] = {15.2, 15, 15.9, 20.8};
+    Peter.setSales(saleData, 4);
+    Peter.showSales();
+    Tom.setSales();
+    Tom.showSales();
     return 0;
 }
