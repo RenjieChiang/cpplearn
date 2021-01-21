@@ -19,8 +19,6 @@ fstream
 /home/tianbot/my_cpp_learn/src/fstream
 cstdlib
 /home/tianbot/my_cpp_learn/src/cstdlib
-
-/home/tianbot/my_cpp_learn/src/mycppmain.cpp
-mycpp.h
-/home/tianbot/my_cpp_learn/src/mycpp.h
+cstring
+/home/tianbot/my_cpp_learn/src/cstring
 

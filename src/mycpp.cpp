@@ -30,24 +30,53 @@
 //    a = b;
 //    b = temp;
 //}
-void file_it(std::ostream & os, double fo, const double fe[], int n)
+//void file_it(std::ostream & os, double fo, const double fe[], int n)
+//{
+//    std::ios_base::fmtflags initial;
+//    initial = os.setf(std::ios_base::fixed);
+//    os.precision(1);
+//    os<<"focal length of objective:"<<fo<<"mm"<<std::endl;
+//    os.setf(std::ios::showpoint);
+//    os.precision(1);
+//    os.width(12);
+//    os<<"f.1. eyepiece";
+//    os.width(15);
+//    os<<"magnification"<<std::endl;
+//    for (int i = 0; i < n; i++)
+//    {
+//        os.width(12);
+//        os<<fe[i];
+//        os.width(15);
+//        os<<int (fo/fe[i] + 0.5)<<std::endl;
+//    }
+//    os.setf(initial);
+//}
+void setGolf(golf & golf_ , const char * fullname_ , int handicap_)
 {
-    std::ios_base::fmtflags initial;
-    initial = os.setf(std::ios_base::fixed);
-    os.precision(1);
-    os<<"focal length of objective:"<<fo<<"mm"<<std::endl;
-    os.setf(std::ios::showpoint);
-    os.precision(1);
-    os.width(12);
-    os<<"f.1. eyepiece";
-    os.width(15);
-    os<<"magnification"<<std::endl;
-    for (int i = 0; i < n; i++)
-    {
-        os.width(12);
-        os<<fe[i];
-        os.width(15);
-        os<<int (fo/fe[i] + 0.5)<<std::endl;
-    }
-    os.setf(initial);
+    strcpy(golf_.fullname , fullname_);
+    golf_.handicap = handicap_;
+}
+
+int setGolf(golf & golf_)
+{
+    std::cout<<"enter fullname  IF ENTER NOTHING --> QUIT"<<std::endl;
+    char fullname_[Len];
+    std::cin.getline(fullname_, Len);
+    if (fullname_[0] == '\0' )return 0;
+    std::cout<<"enter handicap"<<std::endl;
+    int handicap_;
+    std::cin>>handicap_;
+    std::cin.get();
+    setGolf(golf_, fullname_, handicap_);
+    return 1;
+}
+
+void handicap(golf & golf_ , int handicap_)
+{
+    golf_.handicap = handicap_;
+}
+
+void showGolf(const golf & golf_)
+{
+    std::cout<<"    fullname  "<<golf_.fullname<<"  handicap:  "<<golf_.handicap<<std::endl;
 }
