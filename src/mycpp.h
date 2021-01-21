@@ -27,23 +27,45 @@
 //int setGolf(golf & golf_);
 //void handicap(golf & golf_ , int handicap_);
 //void showGolf(const golf & golf_);
-namespace SALES
+//namespace SALES
+//{
+//    const int QUARTERS = 4;
+//    class Sales
+//    {
+//    private:
+//        double sales[QUARTERS];
+//        double average;
+//        double max;
+//        double min;
+//        void calculate(int n = 4);
+//    public:
+//        void setSales(const double saleData[], int n = 4);
+//        void setSales();
+//        void showSales() const;
+//        Sales();
+//        ~Sales();
+//    };
+//}
+class Stock
 {
-    const int QUARTERS = 4;
-    class Sales
-    {
-    private:
-        double sales[QUARTERS];
-        double average;
-        double max;
-        double min;
-        void calculate(int n = 4);
-    public:
-        void setSales(const double saleData[], int n = 4);
-        void setSales();
-        void showSales();
-        Sales();
-        ~Sales();
-    };
-}
+private:
+    std::string company;
+    int shares;
+    double share_val;
+    double total_val;
+    inline void setTotal(){total_val = shares * share_val;}
+
+public:
+    //constructor
+    Stock();
+    Stock(std::string &company_, long share_ = 0, double share_val_ = 0.0);
+    ~Stock();//default destructor
+
+    void buy(long num, double price);
+    void sell(long num, double price);
+    void update(double price);
+    void show() const;
+    const Stock & topValue(const Stock & s) const;
+
+};
 #endif

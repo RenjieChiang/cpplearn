@@ -1,7 +1,9 @@
 // #include "iostream"
 // void showValue( int a , int b  = 20 );
 // int func(int a , int );
+
 #include "mycpp.h"
+
 // int main()
 // {
 //     int c = 10;
@@ -80,40 +82,40 @@
 //{
 //    std::cout<<"    fullname  "<<golf_.fullname<<"  handicap:  "<<golf_.handicap<<std::endl;
 //}
-void SALES::Sales::calculate(int n )
-{
-    double sum;
-    if (n == 1)
-    {
-       sum = average = max = min = sales[0];
-    }
-    else
-        {
-        sum = average = max = min = sales[0];
-        for (int i = 0; i < n-1; ++i)
-        {
-           max = max > sales[i+1] ? max : sales[i+1];
-           min = min < sales[i+1] ? min : sales[i+1];
-           sum += sales[i+1];
-        }
-        average = sum/n;
-        }
-}
-
-void SALES::Sales::setSales()
-{
-    std::string inputSales;
+//void SALES::Sales::calculate(int n )
+//{
+//    double sum;
+//    if (n == 1)
+//    {
+//       sum = average = max = min = sales[0];
+//    }
+//    else
+//        {
+//        sum = average = max = min = sales[0];
+//        for (int i = 0; i < n-1; ++i)
+//        {
+//           max = max > sales[i+1] ? max : sales[i+1];
+//           min = min < sales[i+1] ? min : sales[i+1];
+//           sum += sales[i+1];
+//        }
+//        average = sum/n;
+//        }
+//}
+//
+//void SALES::Sales::setSales()
+//{
+//    std::string inputSales;
 //    std::stringstream stringStream(inputSales);//流方法!!!!
-    int n = 0;
-    for (int i = 0; i < 4; ++i)
-    {
-        std::cout<<"input No."<<i+1<<" data(less than 4), or q to quit!"<<std::endl;
-        std::getline(std::cin, inputSales);
-        if (inputSales[0] == 'q')break;
-        std::stringstream stringstream(inputSales);
-        stringstream>>sales[i];
-        n++;
-    }
+//    int n = 0;
+//    for (int i = 0; i < 4; ++i)
+//    {
+//        std::cout<<"input No."<<i+1<<" data(less than 4), or q to quit!"<<std::endl;
+//        std::getline(std::cin, inputSales);
+//        if (inputSales[0] == 'q')break;
+//        std::stringstream stringstream(inputSales);
+//        stringstream>>sales[i];
+//        n++;
+//    }
 //    std::stringstream stringStream(inputSales);//流方法!!!!
 //    int i = 0;
 //    int n_temp = n;
@@ -123,43 +125,119 @@ void SALES::Sales::setSales()
 //        i++;
 //    }
 // WRONG!!!
-    do{
-        if (n == 0)
-        {
-            std::cout<<"quit...";
-            break;
-        }
-        calculate(n);
-    } while (0);
-}
-void SALES::Sales::setSales(const double *saleData, int n)
+//    do{
+//        if (n == 0)
+//        {
+//            std::cout<<"quit...";
+//            break;
+//        }
+//        calculate(n);
+//    } while (0);
+//}
+//void SALES::Sales::setSales(const double *saleData, int n)
+//{
+//    for (int i = 0; i < n; ++i)
+//    {
+//        sales[i] = saleData[i];
+//    }
+//    calculate(n);
+//}
+//
+//void SALES::Sales::showSales() const
+//{
+//    std::cout<<"    average:    "<<average<<std::endl;
+//    std::cout<<"    max:    "<<max<<std::endl;
+//    std::cout<<"    min:    "<<min<<std::endl;
+//    for (int i = 0; i < QUARTERS; ++i)
+//    {
+//        std::cout<<"sales data No."<<i+1<<"     "<<sales[i]<<std::endl;
+//    }
+//}
+//
+//SALES::Sales::Sales()
+//{
+//    for (int i = 0; i < QUARTERS; ++i) {
+//        sales[i] = 0;
+//    }
+//    average = 0;
+//    max = 0;
+//    min = 0;
+//}
+//
+//SALES::Sales::~ Sales() {}
+Stock::Stock()
 {
-    for (int i = 0; i < n; ++i)
+    company = "no name";
+    shares = 0;
+    share_val = 0.0;
+    total_val = 0.0;
+}
+
+Stock::Stock(std::string &company_, long share_, double share_val_)
+{
+    company = company_;
+    if (share_ < 0)
     {
-        sales[i] = saleData[i];
-    }
-    calculate(n);
+        std::cout<<"shares can not be negative  "<<company<<"   shares set to 0"<<std::endl;
+        shares = 0;
+    } else{shares = share_;}
+    share_val = share_val_;
+    setTotal();
 }
 
-void SALES::Sales::showSales()
+Stock::~Stock() {}
+
+void Stock::buy(long num, double price)
 {
-    std::cout<<"    average:    "<<average<<std::endl;
-    std::cout<<"    max:    "<<max<<std::endl;
-    std::cout<<"    min:    "<<min<<std::endl;
-    for (int i = 0; i < QUARTERS; ++i)
+    if (num < 0)
     {
-        std::cout<<"sales data No."<<i+1<<"     "<<sales[i]<<std::endl;
+        std::cout<<"can not negative"<<std::endl;
+    }
+    else
+    {
+        shares += num;
+        share_val = price;
+        setTotal();
     }
 }
 
-SALES::Sales::Sales()
+void Stock::sell(long num, double price)
 {
-    for (int i = 0; i < QUARTERS; ++i) {
-        sales[i] = 0;
+    if (num < 0)std::cout<<"000";
+    else if(num > shares)std::cout<<"0000";
+    else
+    {
+        shares -= num;
+        share_val = price;
+        setTotal();
     }
-    average = 0;
-    max = 0;
-    min = 0;
 }
 
-SALES::Sales::~Sales() {}
+void Stock::update(double price)
+{
+    share_val = price;
+    setTotal();
+}
+
+void Stock::show() const
+{
+    using std::cout;
+    using std::ios_base;
+    ios_base::fmtflags orig = cout.setf(ios_base::fixed, ios_base::floatfield);
+    std::streamsize prec = cout.precision(3);
+
+    cout << "company:   " << company
+        << "    shares:    " << shares
+        << "    share value:    " << share_val << std::endl;
+    cout.precision(2);
+    cout << "total value:   " << total_val;
+
+    cout.setf(orig ,ios_base::floatfield);
+    cout.precision(prec);
+}
+
+const Stock & Stock::topValue(const Stock &s) const
+{
+    if (s.total_val > this->total_val)return s;
+    else return * this;
+}
