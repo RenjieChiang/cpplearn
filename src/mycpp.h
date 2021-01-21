@@ -46,26 +46,42 @@
 //        ~Sales();
 //    };
 //}
-class Stock
+//class Stock
+//{
+//private:
+//    std::string company;
+//    int shares;
+//    double share_val;
+//    double total_val;
+//    inline void setTotal(){total_val = shares * share_val;}
+//
+//public:
+//    //constructor
+//    Stock();
+//    Stock(std::string &company_, long share_ = 0, double share_val_ = 0.0);
+//    ~Stock();//default destructor
+//
+//    void buy(long num, double price);
+//    void sell(long num, double price);
+//    void update(double price);
+//    void show() const;
+//    const Stock & topValue(const Stock & s) const;
+//
+//};
+typedef int Item;
+class List
 {
 private:
-    std::string company;
-    int shares;
-    double share_val;
-    double total_val;
-    inline void setTotal(){total_val = shares * share_val;}
-
+//    int MAX = 10; bad code!!
+    enum { MAX = 10 };
+    Item items[MAX];
+    int top;
 public:
-    //constructor
-    Stock();
-    Stock(std::string &company_, long share_ = 0, double share_val_ = 0.0);
-    ~Stock();//default destructor
-
-    void buy(long num, double price);
-    void sell(long num, double price);
-    void update(double price);
-    void show() const;
-    const Stock & topValue(const Stock & s) const;
-
+    List();
+    ~List();
+    void addData(const Item & item);
+    bool isEmpty() const;
+    bool isFull() const;
+    void visit(void (*fp) (Item &item));
 };
 #endif

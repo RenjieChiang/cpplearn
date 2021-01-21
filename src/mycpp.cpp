@@ -165,79 +165,112 @@
 //}
 //
 //SALES::Sales::~ Sales() {}
-Stock::Stock()
+//Stock::Stock()
+//{
+//    company = "no name";
+//    shares = 0;
+//    share_val = 0.0;
+//    total_val = 0.0;
+//}
+//
+//Stock::Stock(std::string &company_, long share_, double share_val_)
+//{
+//    company = company_;
+//    if (share_ < 0)
+//    {
+//        std::cout<<"shares can not be negative  "<<company<<"   shares set to 0"<<std::endl;
+//        shares = 0;
+//    } else{shares = share_;}
+//    share_val = share_val_;
+//    setTotal();
+//}
+//
+//Stock::~Stock() {}
+//
+//void Stock::buy(long num, double price)
+//{
+//    if (num < 0)
+//    {
+//        std::cout<<"can not negative"<<std::endl;
+//    }
+//    else
+//    {
+//        shares += num;
+//        share_val = price;
+//        setTotal();
+//    }
+//}
+//
+//void Stock::sell(long num, double price)
+//{
+//    if (num < 0)std::cout<<"000";
+//    else if(num > shares)std::cout<<"0000";
+//    else
+//    {
+//        shares -= num;
+//        share_val = price;
+//        setTotal();
+//    }
+//}
+//
+//void Stock::update(double price)
+//{
+//    share_val = price;
+//    setTotal();
+//}
+//
+//void Stock::show() const
+//{
+//    using std::cout;
+//    using std::ios_base;
+//    ios_base::fmtflags orig = cout.setf(ios_base::fixed, ios_base::floatfield);
+//    std::streamsize prec = cout.precision(3);
+//
+//    cout << "company:   " << company
+//        << "    shares:    " << shares
+//        << "    share value:    " << share_val << std::endl;
+//    cout.precision(2);
+//    cout << "total value:   " << total_val;
+//
+//    cout.setf(orig ,ios_base::floatfield);
+//    cout.precision(prec);
+//}
+//
+//const Stock & Stock::topValue(const Stock &s) const
+//{
+//    if (s.total_val > this->total_val)return s;
+//    else return * this;
+//}
+List::List()
 {
-    company = "no name";
-    shares = 0;
-    share_val = 0.0;
-    total_val = 0.0;
+//    for(Item & i : items){i = 0;}
+    top = 0;
 }
 
-Stock::Stock(std::string &company_, long share_, double share_val_)
+List::~List() {}
+
+bool List::isEmpty() const
 {
-    company = company_;
-    if (share_ < 0)
-    {
-        std::cout<<"shares can not be negative  "<<company<<"   shares set to 0"<<std::endl;
-        shares = 0;
-    } else{shares = share_;}
-    share_val = share_val_;
-    setTotal();
+    if (top == 0)return 1;
+    return 0;
 }
 
-Stock::~Stock() {}
-
-void Stock::buy(long num, double price)
+bool List::isFull() const
 {
-    if (num < 0)
+    if (top == MAX)return true;
+    return false;
+}
+
+void List::addData(const Item &item)
+{
+    items[top] = item;
+    top ++;
+}
+
+void List::visit(void (*fp)(Item &))
+{
+    for (int i = 0; i < top; ++i)
     {
-        std::cout<<"can not negative"<<std::endl;
+        fp(items[i]);
     }
-    else
-    {
-        shares += num;
-        share_val = price;
-        setTotal();
-    }
-}
-
-void Stock::sell(long num, double price)
-{
-    if (num < 0)std::cout<<"000";
-    else if(num > shares)std::cout<<"0000";
-    else
-    {
-        shares -= num;
-        share_val = price;
-        setTotal();
-    }
-}
-
-void Stock::update(double price)
-{
-    share_val = price;
-    setTotal();
-}
-
-void Stock::show() const
-{
-    using std::cout;
-    using std::ios_base;
-    ios_base::fmtflags orig = cout.setf(ios_base::fixed, ios_base::floatfield);
-    std::streamsize prec = cout.precision(3);
-
-    cout << "company:   " << company
-        << "    shares:    " << shares
-        << "    share value:    " << share_val << std::endl;
-    cout.precision(2);
-    cout << "total value:   " << total_val;
-
-    cout.setf(orig ,ios_base::floatfield);
-    cout.precision(prec);
-}
-
-const Stock & Stock::topValue(const Stock &s) const
-{
-    if (s.total_val > this->total_val)return s;
-    else return * this;
 }

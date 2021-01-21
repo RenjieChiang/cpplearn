@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/tianbot/my_cpp_learn/src/mycpp.cpp
-mycpp.h
-/home/tianbot/my_cpp_learn/src/mycpp.h
-mycpp.h
-/home/tianbot/my_cpp_learn/src/mycpp.h
-
 /home/tianbot/my_cpp_learn/src/mycpp.h
 iostream
 /home/tianbot/my_cpp_learn/src/iostream

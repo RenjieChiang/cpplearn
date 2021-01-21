@@ -34,12 +34,12 @@ int main()
 //    {
 //        if(!setGolf(golfMy[i]))break;
 //    }
-    SALES::Sales Peter;
-    SALES::Sales Tom;
-    double saleData[4] = {15.2, 15, 15.9, 20.8};
-    Peter.setSales(saleData, 4);
-    Peter.showSales();
-    Tom.setSales();
-    Tom.showSales();
+//    SALES::Sales Peter;
+//    SALES::Sales Tom;
+//    double saleData[4] = {15.2, 15, 15.9, 20.8};
+//    Peter.setSales(saleData, 4);
+//    Peter.showSales();
+//    Tom.setSales();
+//    Tom.showSales();
     return 0;
 }
