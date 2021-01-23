@@ -107,11 +107,15 @@ class StringBad
 private:
     char * str;
     int len;
-    static int num_strings ;
+//    static int num_strings ;
 public:
     StringBad();
     StringBad(const char * s);
     ~StringBad();
+    StringBad(const StringBad & st);
+    StringBad & operator=(const StringBad & st);
+    char & operator[](int i){return str[i];}
+    const char & operator[](int i) const {return str[i];}//针对const对象的只读版本
     friend std::ostream & operator<<(std::ostream & os, const StringBad & strbad);
 };
 #endif

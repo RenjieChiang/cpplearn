@@ -57,5 +57,13 @@ int main()
 //    temp = 4 * aida;
 //    cout << "4*" << temp << endl;
 //
+    StringBad botton("botton");
+    StringBad cooc("cooc");
+    StringBad dell = cooc;
+    dell = botton;
+    cooc[2] = 'k';
+    std::cout<<cooc;
+    const StringBad ege("ege");
+    std::cout<<ege[2];
     return 0;
 }
