@@ -41,21 +41,21 @@ int main()
 //    Peter.showSales();
 //    Tom.setSales();
 //    Tom.showSales();
-    using std::cout;
-    using std::endl;
-    Time aida(3, 35);
-    Time tosca(2, 48);
-    Time temp;
-
-    cout<<"aida and tosca :\n"<<aida<<"     "<<tosca<<endl;
-    temp = aida + tosca;
-    cout << temp << "+" << endl;
-    temp = aida - tosca;
-    cout << temp << "-" <<endl;
-    temp = aida * 3;
-    cout << temp << "*3" << endl;
-    temp = 4 * aida;
-    cout << "4*" << temp << endl;
-    
+//    using std::cout;
+//    using std::endl;
+//    Time aida(3, 35);
+//    Time tosca(2, 48);
+//    Time temp;
+//
+//    cout<<"aida and tosca :\n"<<aida<<"     "<<tosca<<endl;
+//    temp = aida + tosca;
+//    cout << temp << "+" << endl;
+//    temp = aida - tosca;
+//    cout << temp << "-" <<endl;
+//    temp = aida * 3;
+//    cout << temp << "*3" << endl;
+//    temp = 4 * aida;
+//    cout << "4*" << temp << endl;
+//
     return 0;
 }

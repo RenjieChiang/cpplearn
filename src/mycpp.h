@@ -1,11 +1,11 @@
-#ifndef _MYCPP_ 
-#define _MYCPP_
 #include "iostream"
 #include "fstream"
 #include "cstdlib"
 #include "cstring"
 #include "string"
 #include "sstream"
+#ifndef _MYCPP_
+#define _MYCPP_
 //template <typename AnyType>
 //void add( AnyType & a , AnyType & b)
 //{
@@ -84,22 +84,34 @@
 //    bool isFull() const;
 //    void visit(void (*fp) (Item &item));
 //};
-class Time
+//class Time
+//{
+//private:
+//    int hours;
+//    int minutes;
+//public:
+//    Time();
+//    Time(int h, int m = 0);
+//    ~Time();
+//    void addMin(int minute_);
+//    void addHr(int hour_);
+//    void reset(int h = 0, int m = 0);
+//    Time operator+(const Time & t) const;
+//    Time operator-(const Time & t) const;
+//    Time operator*(const double n) const;
+//    friend Time operator*(const double n, const Time & t){return t*n;}
+//    friend std::ostream & operator<<(std::ostream &os, const Time & t);
+//};
+class StringBad
 {
 private:
-    int hours;
-    int minutes;
+    char * str;
+    int len;
+    static int num_strings ;
 public:
-    Time();
-    Time(int h, int m = 0);
-    ~Time();
-    void addMin(int minute_);
-    void addHr(int hour_);
-    void reset(int h = 0, int m = 0);
-    Time operator+(const Time & t) const;
-    Time operator-(const Time & t) const;
-    Time operator*(const double n) const;
-    friend Time operator*(const double n, const Time & t){return t*n;}
-    friend std::ostream & operator<<(std::ostream &os, const Time & t);
+    StringBad();
+    StringBad(const char * s);
+    ~StringBad();
+    friend std::ostream & operator<<(std::ostream & os, const StringBad & strbad);
 };
 #endif
