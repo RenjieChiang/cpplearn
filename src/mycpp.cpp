@@ -241,36 +241,135 @@
 //    if (s.total_val > this->total_val)return s;
 //    else return * this;
 //}
-List::List()
+//List::List()
+//{
+////    for(Item & i : items){i = 0;}
+//    top = 0;
+//}
+//
+//List::~List() {}
+//
+//bool List::isEmpty() const
+//{
+//    if (top == 0)return 1;
+//    return 0;
+//}
+//
+//bool List::isFull() const
+//{
+//    if (top == MAX)return true;
+//    return false;
+//}
+//
+//void List::addData(const Item &item)
+//{
+//    items[top] = item;
+//    top ++;
+//}
+//
+//void List::visit(void (*fp)(Item &))
+//{
+//    for (int i = 0; i < top; ++i)
+//    {
+//        fp(items[i]);
+//    }
+//}
+using std::cout;
+Time::Time()
 {
-//    for(Item & i : items){i = 0;}
-    top = 0;
+    hours = minutes =0;
 }
 
-List::~List() {}
-
-bool List::isEmpty() const
+Time::Time(int h, int m)
 {
-    if (top == 0)return 1;
-    return 0;
-}
-
-bool List::isFull() const
-{
-    if (top == MAX)return true;
-    return false;
-}
-
-void List::addData(const Item &item)
-{
-    items[top] = item;
-    top ++;
-}
-
-void List::visit(void (*fp)(Item &))
-{
-    for (int i = 0; i < top; ++i)
+    if (m>60)
     {
-        fp(items[i]);
+        cout<<"wrong minutes number!"<<std::endl;
+        minutes = m % 60;
+        hours = h + m/60;
     }
+    if (m<0)
+    {
+        cout<<"wrong minutes number!"<<std::endl;
+        hours = h;
+        minutes = 0;
+    }
+    if (0<=m&&m<=60)
+    {
+        minutes = m;
+        hours = h;
+    }
+}
+
+Time::~Time() {}
+
+void Time::addMin(int minute_)
+{
+    hours += (minutes + minute_) / 60;
+    minutes = (minutes + minute_) % 60;
+}
+
+void Time::addHr(int hour_)
+{
+    hours += hour_;
+}
+
+void Time::reset(int h, int m)
+{
+    if (m>60)
+    {
+        cout<<"wrong minutes number!"<<std::endl;
+        minutes = m % 60;
+        hours = h + m/60;
+    }
+    if (m<0)
+    {
+        cout<<"wrong minutes number!"<<std::endl;
+        hours = h;
+        minutes = 0;
+    }
+    if (0<=m&&m<=60)
+    {
+        minutes = m;
+        hours = h;
+    }
+}
+
+Time Time::operator+(const Time &t) const
+{
+    Time diff;
+    int totalHour, totalMinute;
+    totalMinute = t.minutes + this->minutes;
+    totalHour = t.hours + this->hours;
+    diff.addHr(totalHour);
+    diff.addMin(totalMinute);
+    return diff;
+}
+
+Time Time::operator-(const Time &t) const
+{
+    Time diff;
+    int total1, total2;
+    total1 = this->hours * 60 + this->minutes;
+    total2 = t.hours * 60 + t.minutes;
+    diff.minutes = (total1 - total2) % 60;
+    diff.hours = (total1 - total2) / 60;
+    return diff;
+}
+
+Time Time::operator*(const double n) const
+{
+    Time temp;
+    int total1;
+    total1 = this->hours * 60 + this->minutes;
+    total1 *= n;
+    temp.minutes = total1 % 60;
+    temp.hours = total1 / 60;
+    return temp;
+}
+
+std::ostream & operator<<(std::ostream & os, const Time & t)
+{
+    os<<"hour:  "<<t.hours<<"   minute:    "<<t.minutes<<std::endl;
+    return os;
 }

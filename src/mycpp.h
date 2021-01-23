@@ -68,20 +68,38 @@
 //    const Stock & topValue(const Stock & s) const;
 //
 //};
-typedef int Item;
-class List
+//typedef int Item;
+//class List
+//{
+//private:
+//    int MAX = 10; bad code!!
+//    enum { MAX = 10 };
+//    Item items[MAX];
+//    int top;
+//public:
+//    List();
+//    ~List();
+//    void addData(const Item & item);
+//    bool isEmpty() const;
+//    bool isFull() const;
+//    void visit(void (*fp) (Item &item));
+//};
+class Time
 {
 private:
-//    int MAX = 10; bad code!!
-    enum { MAX = 10 };
-    Item items[MAX];
-    int top;
+    int hours;
+    int minutes;
 public:
-    List();
-    ~List();
-    void addData(const Item & item);
-    bool isEmpty() const;
-    bool isFull() const;
-    void visit(void (*fp) (Item &item));
+    Time();
+    Time(int h, int m = 0);
+    ~Time();
+    void addMin(int minute_);
+    void addHr(int hour_);
+    void reset(int h = 0, int m = 0);
+    Time operator+(const Time & t) const;
+    Time operator-(const Time & t) const;
+    Time operator*(const double n) const;
+    friend Time operator*(const double n, const Time & t){return t*n;}
+    friend std::ostream & operator<<(std::ostream &os, const Time & t);
 };
 #endif
