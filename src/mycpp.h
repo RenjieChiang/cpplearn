@@ -102,20 +102,48 @@
 //    friend Time operator*(const double n, const Time & t){return t*n;}
 //    friend std::ostream & operator<<(std::ostream &os, const Time & t);
 //};
-class StringBad
+//class String
+//{
+//private:
+//    char * str;
+//    int len;
+//    static int num_strings ;
+//    static const int CINLIM = 80;
+//public:
+//    String();
+//    String(const char * s);
+//    ~String();
+//    String(const StringBad & st);
+//    String & operator=(const StringBad & st);
+//    char & operator[](int i){return str[i];}
+//    const char & operator[](int i) const {return str[i];}//针对const对象的只读版本
+//    friend std::ostream & operator<<(std::ostream & os, const StringBad & strbad);
+//};
+class String
 {
 private:
     char * str;
     int len;
-//    static int num_strings ;
+    static int num_strings;
+    static const int CINLIM = 80;
 public:
-    StringBad();
-    StringBad(const char * s);
-    ~StringBad();
-    StringBad(const StringBad & st);
-    StringBad & operator=(const StringBad & st);
-    char & operator[](int i){return str[i];}
-    const char & operator[](int i) const {return str[i];}//针对const对象的只读版本
-    friend std::ostream & operator<<(std::ostream & os, const StringBad & strbad);
+    String();
+    String(const char * s);
+    String(const String & scopy);//copy constructor
+    ~String();
+    int length() const{return len;}
+
+    String & operator=(const String & st);
+    String & operator=(const char * s);
+    char & operator[](int i);
+    const char & operator[](int i) const;
+
+    friend bool operator<(const String &str1, const String &str2);
+    friend bool operator>(const String &str1, const String &str2);
+    friend bool operator==(const String &str1, const String &str2);
+    friend std::ostream & operator<<(std::ostream & os, const String &st);
+    friend std::istream & operator>>(std::istream & is, const String &st);
+
+    static int howMany();
 };
 #endif

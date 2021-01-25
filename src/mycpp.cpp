@@ -375,52 +375,141 @@
 //}
 //int StringBad::num_strings = 0;
 
-StringBad::StringBad()
+//StringBad::StringBad()
+//{
+//    len = 0;
+//    str = new char[len + 1];//与delete[]兼容!!!
+//    str = nullptr;
+////    num_strings++;
+////    std::cout<<"num_strings:    "<<num_strings<<"   "<<std::endl;
+//}
+//
+//StringBad::StringBad(const char *s)
+//{
+//    len = std::strlen(s);
+//    str = new char[len + 1];
+//    std::strcpy(str, s);
+////    num_strings++;
+////    std::cout<<"num_strings:    "<<num_strings<<"   "<<std::endl;
+//}
+//
+//StringBad::~StringBad()
+//{
+//    delete [] str;
+////    num_strings--;
+//}
+//
+//std::ostream & operator<<(std::ostream & os, const StringBad & strbad)
+//{
+//    os << strbad.str;
+//    return os;
+//}
+//
+//StringBad::StringBad(const StringBad &st)
+//{
+////    num_strings++;
+//    len = st.len;
+//    str = new char [len + 1];
+//    std::strcpy(str, st.str);
+////    std::cout<<"num_strings:    "<<num_strings<<std::endl;
+//}
+//
+//StringBad & StringBad::operator=(const StringBad &st)
+//{
+//    if (this == &st)return *this;
+//    delete [] str;
+//    len = st.len;
+//    str = new char [len + 1];
+//    std::strcpy(str, st.str);
+//    return *this;
+//}
+using std::cin;
+using std::cout;
+
+int String::num_strings = 0;
+
+int String::howMany() {return num_strings;}
+
+String::String()
 {
     len = 0;
-    str = new char[len + 1];//与delete[]兼容!!!
+    str = new char [len+1];
     str = nullptr;
-//    num_strings++;
-//    std::cout<<"num_strings:    "<<num_strings<<"   "<<std::endl;
+    num_strings++;
 }
 
-StringBad::StringBad(const char *s)
+String::String(const char *s)
 {
     len = std::strlen(s);
-    str = new char[len + 1];
+    str = new char [len+1];
     std::strcpy(str, s);
-//    num_strings++;
-//    std::cout<<"num_strings:    "<<num_strings<<"   "<<std::endl;
+    num_strings++;
 }
 
-StringBad::~StringBad()
+String::String(const String &scopy)
+{
+    len = scopy.len;
+    str = new char [len+1];
+    std::strcpy(str, scopy.str);
+    num_strings++;
+}
+
+String::~String()
 {
     delete [] str;
-//    num_strings--;
+    num_strings--;
 }
 
-std::ostream & operator<<(std::ostream & os, const StringBad & strbad)
+String & String::operator=(const String &st)
 {
-    os << strbad.str;
-    return os;
-}
-
-StringBad::StringBad(const StringBad &st)
-{
-//    num_strings++;
-    len = st.len;
-    str = new char [len + 1];
-    std::strcpy(str, st.str);
-//    std::cout<<"num_strings:    "<<num_strings<<std::endl;
-}
-
-StringBad & StringBad::operator=(const StringBad &st)
-{
-    if (this == &st)return *this;
     delete [] str;
     len = st.len;
-    str = new char [len + 1];
+    str = new char [len+1];
     std::strcpy(str, st.str);
     return *this;
 }
 
+String & String::operator=(const char *s)
+{
+    delete [] str;
+    len = std::strlen(s);
+    str = new char [len+1];
+    std::strcpy(str, s);
+    return *this;
+}
+
+char & String::operator[](int i)
+{
+    return str[i];
+}
+
+const char & String::operator[](int i) const
+{
+    return str[i];
+}
+
+bool operator<(const String &str1, const String &str2)
+{
+    return std::strcmp(str1.str, str2.str) < 0;
+}
+
+bool operator>(const String &str1, const String &str2)
+{
+    return std::strcmp(str1.str, str2.str) > 0;
+}
+
+bool operator==(const String &str1, const String &str2)
+{
+    return std::strcmp(str1.str, str2.str) == 0;
+}
+
+std::ostream & operator<<(std::ostream & os, const String &st)
+{
+    os << st.str;
+    return os;
+}
+
+std::istream & operator>>(std::istream & is, const String &st)
+{
+    is
+}
