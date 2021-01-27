@@ -500,7 +500,9 @@ bool operator>(const String &str1, const String &str2)
 
 bool operator==(const String &str1, const String &str2)
 {
+//    char temp[String::CINLIM];
     return std::strcmp(str1.str, str2.str) == 0;
+
 }
 
 std::ostream & operator<<(std::ostream & os, const String &st)
@@ -509,7 +511,17 @@ std::ostream & operator<<(std::ostream & os, const String &st)
     return os;
 }
 
-std::istream & operator>>(std::istream & is, const String &st)
+std::istream & operator>>(std::istream & is,  String &st)
 {
-    is
+    char temp[String::CINLIM];
+    is.get(temp, String::CINLIM);
+    if (is)
+    {
+        st = temp;
+    }
+    while (is && is.get() != 0)
+        continue;
+    return is;
 }
+
+
