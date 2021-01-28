@@ -423,105 +423,178 @@
 //    std::strcpy(str, st.str);
 //    return *this;
 //}
-using std::cin;
-using std::cout;
-
-int String::num_strings = 0;
-
-int String::howMany() {return num_strings;}
-
-String::String()
-{
-    len = 0;
-    str = new char [len+1];
-    str = nullptr;
-    num_strings++;
-}
-
-String::String(const char *s)
-{
-    len = std::strlen(s);
-    str = new char [len+1];
-    std::strcpy(str, s);
-    num_strings++;
-}
-
-String::String(const String &scopy)
-{
-    len = scopy.len;
-    str = new char [len+1];
-    std::strcpy(str, scopy.str);
-    num_strings++;
-}
-
-String::~String()
-{
-    delete [] str;
-    num_strings--;
-}
-
-String & String::operator=(const String &st)
-{
-    delete [] str;
-    len = st.len;
-    str = new char [len+1];
-    std::strcpy(str, st.str);
-    return *this;
-}
-
-String & String::operator=(const char *s)
-{
-    delete [] str;
-    len = std::strlen(s);
-    str = new char [len+1];
-    std::strcpy(str, s);
-    return *this;
-}
-
-char & String::operator[](int i)
-{
-    return str[i];
-}
-
-const char & String::operator[](int i) const
-{
-    return str[i];
-}
-
-bool operator<(const String &str1, const String &str2)
-{
-    return std::strcmp(str1.str, str2.str) < 0;
-}
-
-bool operator>(const String &str1, const String &str2)
-{
-    return std::strcmp(str1.str, str2.str) > 0;
-}
-
-bool operator==(const String &str1, const String &str2)
-{
+//using std::cin;
+//using std::cout;
+//
+//int String::num_strings = 0;
+//
+//int String::howMany() {return num_strings;}
+//
+//String::String()
+//{
+//    len = 0;
+//    str = new char [len+1];
+//    str = nullptr;
+//    num_strings++;
+//}
+//
+//String::String(const char *s)
+//{
+//    len = std::strlen(s);
+//    str = new char [len+1];
+//    std::strcpy(str, s);
+//    num_strings++;
+//}
+//
+//String::String(const String &scopy)
+//{
+//    len = scopy.len;
+//    str = new char [len+1];
+//    std::strcpy(str, scopy.str);
+//    num_strings++;
+//}
+//
+//String::~String()
+//{
+//    delete [] str;
+//    num_strings--;
+//}
+//
+//String & String::operator=(const String &st)
+//{
+//    delete [] str;
+//    len = st.len;
+//    str = new char [len+1];
+//    std::strcpy(str, st.str);
+//    return *this;
+//}
+//
+//String & String::operator=(const char *s)
+//{
+//    delete [] str;
+//    len = std::strlen(s);
+//    str = new char [len+1];
+//    std::strcpy(str, s);
+//    return *this;
+//}
+//
+//char & String::operator[](int i)
+//{
+//    return str[i];
+//}
+//
+//const char & String::operator[](int i) const
+//{
+//    return str[i];
+//}
+//
+//bool operator<(const String &str1, const String &str2)
+//{
+//    return std::strcmp(str1.str, str2.str) < 0;
+//}
+//
+//bool operator>(const String &str1, const String &str2)
+//{
+//    return std::strcmp(str1.str, str2.str) > 0;
+//}
+//
+//bool operator==(const String &str1, const String &str2)
+//{
+////    char temp[String::CINLIM];
+//    return std::strcmp(str1.str, str2.str) == 0;
+//
+//}
+//
+//std::ostream & operator<<(std::ostream & os, const String &st)
+//{
+//    os << st.str;
+//    return os;
+//}
+//
+//std::istream & operator>>(std::istream & is,  String &st)
+//{
 //    char temp[String::CINLIM];
-    return std::strcmp(str1.str, str2.str) == 0;
-
+//    is.get(temp, String::CINLIM);
+//    if (is)
+//    {
+//        st = temp;
+//    }
+//    while (is && is.get() != 0)
+//        continue;
+//    return is;
+//}
+void Customer::setArrive(long when_arrive)
+{
+    process_time = std::rand() % 3 + 1;
+    arrive = when_arrive;
 }
 
-std::ostream & operator<<(std::ostream & os, const String &st)
+Queue::Queue(int q_size_) : q_size(q_size_)
 {
-    os << st.str;
-    return os;
+    front = rear = nullptr;
+    items = 0;
 }
 
-std::istream & operator>>(std::istream & is,  String &st)
+Queue::~Queue()
 {
-    char temp[String::CINLIM];
-    is.get(temp, String::CINLIM);
-    if (is)
+    Node * temp;
+    while (front != nullptr)
     {
-        st = temp;
+        temp = front;
+        front = front->next;
+        delete temp;
     }
-    while (is && is.get() != 0)
-        continue;
-    return is;
+}
+
+bool Queue::isEmpty() const
+{
+    return items == 0;
+}
+
+bool Queue::isFull() const
+{
+    return items == q_size;
+}
+
+int Queue::queueCount() const
+{
+    return items;
+}
+
+bool Queue::enQueue(const Item &item_)
+{
+    if (isFull())
+        return false;
+    Node * temp = new Node;
+    temp->item = item_;
+    temp->next = nullptr;
+    if (isEmpty())
+    {
+        rear = temp;
+        front = temp;
+    }
+    else
+    {
+        rear->next = temp;
+        rear = temp;
+    }
+    items++;
+    return true;
+}
+
+bool Queue::deQueue(Item &item_)
+{
+    if (isEmpty())
+        return false;
+    Node * temp;
+    temp = front;
+    item_ = temp->item;
+    front = front->next;
+    if (front == nullptr)
+        rear = nullptr;
+    delete temp;
+    items--;
+    return true;
 }
 
 

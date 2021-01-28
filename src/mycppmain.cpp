@@ -1,8 +1,8 @@
 #include  "mycpp.h"
 //const int LIMIT = 5;
 //const int length = 10;
-int main()
-{
+//int main()
+//{
 //    std::ofstream fout;
 //    const char * fn = "ep-data.txt";
 //    fout.open(fn);
@@ -66,4 +66,86 @@ int main()
 //    const StringBad ege("ege");
 //    std::cout<<ege[2];
 //    return 0;
+const int MIN_PER_HR = 60;
+
+bool newCustomer(double x);
+
+int main()
+{
+    using std::cin;
+    using std::cout;
+    using std::endl;
+
+    std::srand(std::time(0));//rand()initial
+
+    cout << "enter maximum size of queue:   " << endl;
+    int q_size;
+    cin >> q_size;
+    Queue line(q_size);
+    cout << "enter hours:   " << endl;
+    int hours;
+    cin >> hours;
+    long cycle_limit = MIN_PER_HR * hours;
+
+    cout << "average customers per hour:" << endl;
+    double per_hour;
+    cin >> per_hour;
+    double min_per_customer;
+    min_per_customer = MIN_PER_HR / per_hour;
+
+    Item temp;
+    long turnaways = 0;
+    long customers = 0;
+    long served = 0;
+    long sum_line = 0;
+    int wait_time = 0;
+    long line_wait = 0;
+
+    for (int i = 0; i < cycle_limit; ++i)
+    {
+        if (newCustomer(min_per_customer))
+        {
+            if (line.isFull())
+                turnaways++;
+            else
+            {
+                customers++;
+                temp.setArrive(i);
+                line.enQueue(temp);
+            }
+        }
+        if (wait_time > 0)
+            wait_time--;
+        if (wait_time <= 0 && !line.isEmpty())
+        {
+            line.deQueue(temp);
+            wait_time = temp.processTime();
+            line_wait += i - temp.whenArrive();
+            served++;
+            cout << line.queueCount() <<endl;
+        }
+        sum_line += line.queueCount();
+
+    }
+
+    if (customers > 0)
+    {
+        cout << "customers accepted:  " << customers << endl;
+        cout << "served:    " << served << endl;
+        cout << "turnaways:     " << turnaways <<endl;
+        cout << "average queue size:    ";
+        cout.precision(2);
+        cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
+        cout << (double ) sum_line / cycle_limit << endl;
+        cout << "average wait time:     " << (double) line_wait / served << endl;
+    }
+    else
+        cout << "none customer";
+    cout << "done";
+    return 0;
+}
+
+bool newCustomer(double x)
+{
+    return ((std::rand() * x / RAND_MAX) < 1 );
 }

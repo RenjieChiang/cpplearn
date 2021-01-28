@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/tianbot/my_cpp_learn/src/mycpp.cpp
-mycpp.h
-/home/tianbot/my_cpp_learn/src/mycpp.h
-mycpp.h
-/home/tianbot/my_cpp_learn/src/mycpp.h
-
 /home/tianbot/my_cpp_learn/src/mycpp.h
 iostream
 /home/tianbot/my_cpp_learn/src/iostream
@@ -25,6 +19,8 @@ string
 /home/tianbot/my_cpp_learn/src/string
 sstream
 /home/tianbot/my_cpp_learn/src/sstream
+ctime
+/home/tianbot/my_cpp_learn/src/ctime
 
 /home/tianbot/my_cpp_learn/src/mycppmain.cpp
 mycpp.h

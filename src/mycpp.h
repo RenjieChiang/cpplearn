@@ -4,6 +4,7 @@
 #include "cstring"
 #include "string"
 #include "sstream"
+#include "ctime"
 #ifndef _MYCPP_
 #define _MYCPP_
 //template <typename AnyType>
@@ -119,31 +120,66 @@
 //    const char & operator[](int i) const {return str[i];}//针对const对象的只读版本
 //    friend std::ostream & operator<<(std::ostream & os, const StringBad & strbad);
 //};
-class String
+//class String
+//{
+//private:
+//    char * str;
+//    int len;
+//    static int num_strings;
+//    static const int CINLIM = 80;
+//public:
+//    String();
+//    String(const char * s);
+//    String(const String & scopy);//copy constructor
+//    ~String();
+//    int length() const{return len;}
+//
+//    String & operator=(const String & st);
+//    String & operator=(const char * s);
+//    char & operator[](int i);
+//    const char & operator[](int i) const;
+//
+//    friend bool operator<(const String &str1, const String &str2);
+//    friend bool operator>(const String &str1, const String &str2);
+//    friend bool operator==(const String &str1, const String &str2);
+//    friend std::ostream & operator<<(std::ostream & os, const String &st);
+//    friend std::istream & operator>>(std::istream & is, String &st);
+//
+//    static int howMany();
+//};
+class Customer
 {
 private:
-    char * str;
-    int len;
-    static int num_strings;
-    static const int CINLIM = 80;
+    long arrive;
+    int process_time;
 public:
-    String();
-    String(const char * s);
-    String(const String & scopy);//copy constructor
-    ~String();
-    int length() const{return len;}
+    Customer(){arrive = process_time = 0;}
+    void setArrive(long when_arrive);
+    long whenArrive() const {return arrive;}
+    int processTime() const {return process_time;}
+};
 
-    String & operator=(const String & st);
-    String & operator=(const char * s);
-    char & operator[](int i);
-    const char & operator[](int i) const;
+typedef Customer Item;
 
-    friend bool operator<(const String &str1, const String &str2);
-    friend bool operator>(const String &str1, const String &str2);
-    friend bool operator==(const String &str1, const String &str2);
-    friend std::ostream & operator<<(std::ostream & os, const String &st);
-    friend std::istream & operator>>(std::istream & is, String &st);
+class Queue
+{
+private:
+    struct Node {Item item; struct Node * next;};
+    enum {Q_size = 10};
+    Node * front;
+    Node * rear;
+    int items;
+    const int q_size;
+    Queue(const Queue & q) : q_size(0) {}
+    Queue & operator=(const Queue & q) {return  *this;}
 
-    static int howMany();
+public:
+    Queue(int q_size_ = Q_size);
+    ~Queue();
+    bool isEmpty() const;
+    bool isFull() const;
+    int queueCount() const;
+    bool enQueue(const Item &item_);
+    bool deQueue(Item &item_);
 };
 #endif
