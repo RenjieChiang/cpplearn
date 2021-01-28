@@ -523,78 +523,78 @@
 //        continue;
 //    return is;
 //}
-void Customer::setArrive(long when_arrive)
-{
-    process_time = std::rand() % 3 + 1;
-    arrive = when_arrive;
-}
-
-Queue::Queue(int q_size_) : q_size(q_size_)
-{
-    front = rear = nullptr;
-    items = 0;
-}
-
-Queue::~Queue()
-{
-    Node * temp;
-    while (front != nullptr)
-    {
-        temp = front;
-        front = front->next;
-        delete temp;
-    }
-}
-
-bool Queue::isEmpty() const
-{
-    return items == 0;
-}
-
-bool Queue::isFull() const
-{
-    return items == q_size;
-}
-
-int Queue::queueCount() const
-{
-    return items;
-}
-
-bool Queue::enQueue(const Item &item_)
-{
-    if (isFull())
-        return false;
-    Node * temp = new Node;
-    temp->item = item_;
-    temp->next = nullptr;
-    if (isEmpty())
-    {
-        rear = temp;
-        front = temp;
-    }
-    else
-    {
-        rear->next = temp;
-        rear = temp;
-    }
-    items++;
-    return true;
-}
-
-bool Queue::deQueue(Item &item_)
-{
-    if (isEmpty())
-        return false;
-    Node * temp;
-    temp = front;
-    item_ = temp->item;
-    front = front->next;
-    if (front == nullptr)
-        rear = nullptr;
-    delete temp;
-    items--;
-    return true;
-}
+//void Customer::setArrive(long when_arrive)
+//{
+//    process_time = std::rand() % 3 + 1;
+//    arrive = when_arrive;
+//}
+//
+//Queue::Queue(int q_size_) : q_size(q_size_)
+//{
+//    front = rear = nullptr;
+//    items = 0;
+//}
+//
+//Queue::~Queue()
+//{
+//    Node * temp;
+//    while (front != nullptr)
+//    {
+//        temp = front;
+//        front = front->next;
+//        delete temp;
+//    }
+//}
+//
+//bool Queue::isEmpty() const
+//{
+//    return items == 0;
+//}
+//
+//bool Queue::isFull() const
+//{
+//    return items == q_size;
+//}
+//
+//int Queue::queueCount() const
+//{
+//    return items;
+//}
+//
+//bool Queue::enQueue(const Item &item_)
+//{
+//    if (isFull())
+//        return false;
+//    Node * temp = new Node;
+//    temp->item = item_;
+//    temp->next = nullptr;
+//    if (isEmpty())
+//    {
+//        rear = temp;
+//        front = temp;
+//    }
+//    else
+//    {
+//        rear->next = temp;
+//        rear = temp;
+//    }
+//    items++;
+//    return true;
+//}
+//
+//bool Queue::deQueue(Item &item_)
+//{
+//    if (isEmpty())
+//        return false;
+//    Node * temp;
+//    temp = front;
+//    item_ = temp->item;
+//    front = front->next;
+//    if (front == nullptr)
+//        rear = nullptr;
+//    delete temp;
+//    items--;
+//    return true;
+//}
 
 

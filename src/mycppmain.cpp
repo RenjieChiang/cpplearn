@@ -66,86 +66,128 @@
 //    const StringBad ege("ege");
 //    std::cout<<ege[2];
 //    return 0;
-const int MIN_PER_HR = 60;
-
-bool newCustomer(double x);
-
+//const int MIN_PER_HR = 60;
+//
+//bool newCustomer(double x);
+//
+//int main()
+//{
+//    using std::cin;
+//    using std::cout;
+//    using std::endl;
+//
+//    std::srand(std::time(0));//rand()initial
+//
+//    cout << "enter maximum size of queue:   " << endl;
+//    int q_size;
+//    cin >> q_size;
+//    Queue line(q_size);
+//    cout << "enter hours:   " << endl;
+//    int hours;
+//    cin >> hours;
+//    long cycle_limit = MIN_PER_HR * hours;
+//
+//    cout << "average customers per hour:" << endl;
+//    double per_hour;
+//    cin >> per_hour;
+//    double min_per_customer;
+//    min_per_customer = MIN_PER_HR / per_hour;
+//
+//    Item temp;
+//    long turnaways = 0;
+//    long customers = 0;
+//    long served = 0;
+//    long sum_line = 0;
+//    int wait_time = 0;
+//    long line_wait = 0;
+//
+//    for (int i = 0; i < cycle_limit; ++i)
+//    {
+//        if (newCustomer(min_per_customer))
+//        {
+//            if (line.isFull())
+//                turnaways++;
+//            else
+//            {
+//                customers++;
+//                temp.setArrive(i);
+//                line.enQueue(temp);
+//            }
+//        }
+//        if (wait_time > 0)
+//            wait_time--;
+//        if (wait_time <= 0 && !line.isEmpty())
+//        {
+//            line.deQueue(temp);
+//            wait_time = temp.processTime();
+//            line_wait += i - temp.whenArrive();
+//            served++;
+//            cout << line.queueCount() <<endl;
+//        }
+//        sum_line += line.queueCount();
+//
+//    }
+//
+//    if (customers > 0)
+//    {
+//        cout << "customers accepted:  " << customers << endl;
+//        cout << "served:    " << served << endl;
+//        cout << "turnaways:     " << turnaways <<endl;
+//        cout << "average queue size:    ";
+//        cout.precision(2);
+//        cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
+//        cout << (double ) sum_line / cycle_limit << endl;
+//        cout << "average wait time:     " << (double) line_wait / served << endl;
+//    }
+//    else
+//        cout << "none customer";
+//    cout << "done";
+//    return 0;
+//}
+//
+//bool newCustomer(double x)
+//{
+//    return ((std::rand() * x / RAND_MAX) < 1 );
+//}
+//int main()
+//{
+//    int A[3][3] = { {3, 2, 8}, {1, 7, 5}, {4, 6, 9} };
+//    int B[3][3] = { {2, 3, 6}, {6, 1, 9}, {8, 4, 7} };
+//    int C[3][3];
+//    std::cout.width(5);
+//    for (int i = 0; i < 3; ++i)
+//    {
+//        for (int j = 0; j < 3; ++j)
+//        {
+//            C[i][j] = A[i][j] + B[i][j];
+//            std::cout.width(5);
+//            std::cout << C[i][j] ;
+//        }
+//        std::cout << std::endl;
+//    }
+//    return 0;
+//}
 int main()
 {
-    using std::cin;
-    using std::cout;
-    using std::endl;
-
-    std::srand(std::time(0));//rand()initial
-
-    cout << "enter maximum size of queue:   " << endl;
-    int q_size;
-    cin >> q_size;
-    Queue line(q_size);
-    cout << "enter hours:   " << endl;
-    int hours;
-    cin >> hours;
-    long cycle_limit = MIN_PER_HR * hours;
-
-    cout << "average customers per hour:" << endl;
-    double per_hour;
-    cin >> per_hour;
-    double min_per_customer;
-    min_per_customer = MIN_PER_HR / per_hour;
-
-    Item temp;
-    long turnaways = 0;
-    long customers = 0;
-    long served = 0;
-    long sum_line = 0;
-    int wait_time = 0;
-    long line_wait = 0;
-
-    for (int i = 0; i < cycle_limit; ++i)
+    std::cout << "Enter one integer:    " << std::endl;
+    int first;
+    std::cin >> first;
+    while (first <= 0)
     {
-        if (newCustomer(min_per_customer))
-        {
-            if (line.isFull())
-                turnaways++;
-            else
-            {
-                customers++;
-                temp.setArrive(i);
-                line.enQueue(temp);
-            }
-        }
-        if (wait_time > 0)
-            wait_time--;
-        if (wait_time <= 0 && !line.isEmpty())
-        {
-            line.deQueue(temp);
-            wait_time = temp.processTime();
-            line_wait += i - temp.whenArrive();
-            served++;
-            cout << line.queueCount() <<endl;
-        }
-        sum_line += line.queueCount();
-
+        std::cout << "number is not greater than 0, please re-input!" << std::endl;
+        std::cin >> first;
     }
-
-    if (customers > 0)
+    std::cout << "first number check!\n" << "Please input second number, and it should be less than first one."<<std::endl;
+    int second;
+    std::cin >> second;
+    while (second <= 0 || second > first )
     {
-        cout << "customers accepted:  " << customers << endl;
-        cout << "served:    " << served << endl;
-        cout << "turnaways:     " << turnaways <<endl;
-        cout << "average queue size:    ";
-        cout.precision(2);
-        cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
-        cout << (double ) sum_line / cycle_limit << endl;
-        cout << "average wait time:     " << (double) line_wait / served << endl;
+        std::cout << "wrong input, please re-input!" << std::endl;
+        std::cin >> second;
     }
-    else
-        cout << "none customer";
-    cout << "done";
+    if (!(first % second))
+    {
+        std::cout << "fir can be divisible by sec";
+    } else std::cout << "fir can not be divisible by sec";
     return 0;
-}
-
-bool newCustomer(double x)
-{
-    return ((std::rand() * x / RAND_MAX) < 1 );
 }

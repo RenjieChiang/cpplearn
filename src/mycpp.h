@@ -147,39 +147,39 @@
 //
 //    static int howMany();
 //};
-class Customer
-{
-private:
-    long arrive;
-    int process_time;
-public:
-    Customer(){arrive = process_time = 0;}
-    void setArrive(long when_arrive);
-    long whenArrive() const {return arrive;}
-    int processTime() const {return process_time;}
-};
-
-typedef Customer Item;
-
-class Queue
-{
-private:
-    struct Node {Item item; struct Node * next;};
-    enum {Q_size = 10};
-    Node * front;
-    Node * rear;
-    int items;
-    const int q_size;
-    Queue(const Queue & q) : q_size(0) {}
-    Queue & operator=(const Queue & q) {return  *this;}
-
-public:
-    Queue(int q_size_ = Q_size);
-    ~Queue();
-    bool isEmpty() const;
-    bool isFull() const;
-    int queueCount() const;
-    bool enQueue(const Item &item_);
-    bool deQueue(Item &item_);
-};
+//class Customer
+//{
+//private:
+//    long arrive;
+//    int process_time;
+//public:
+//    Customer(){arrive = process_time = 0;}
+//    void setArrive(long when_arrive);
+//    long whenArrive() const {return arrive;}
+//    int processTime() const {return process_time;}
+//};
+//
+//typedef Customer Item;
+//
+//class Queue
+//{
+//private:
+//    struct Node {Item item; struct Node * next;};
+//    enum {Q_size = 10};
+//    Node * front;
+//    Node * rear;
+//    int items;
+//    const int q_size;
+//    Queue(const Queue & q) : q_size(0) {}
+//    Queue & operator=(const Queue & q) {return  *this;}
+//
+//public:
+//    Queue(int q_size_ = Q_size);
+//    ~Queue();
+//    bool isEmpty() const;
+//    bool isFull() const;
+//    int queueCount() const;
+//    bool enQueue(const Item &item_);
+//    bool deQueue(Item &item_);
+//};
 #endif
