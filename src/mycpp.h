@@ -5,6 +5,7 @@
 #include "string"
 #include "sstream"
 #include "ctime"
+#include "cmath"
 #ifndef _MYCPP_
 #define _MYCPP_
 //template <typename AnyType>

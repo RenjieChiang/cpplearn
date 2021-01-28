@@ -21,6 +21,8 @@ sstream
 /home/tianbot/my_cpp_learn/src/sstream
 ctime
 /home/tianbot/my_cpp_learn/src/ctime
+cmath
+/home/tianbot/my_cpp_learn/src/cmath
 
 /home/tianbot/my_cpp_learn/src/mycppmain.cpp
 mycpp.h
