@@ -183,41 +183,42 @@
 //    bool enQueue(const Item &item_);
 //    bool deQueue(Item &item_);
 //};
-class Tv
-{
-public:
-    friend class Remote;
-    enum {Off, On};
-    enum {MinVal, MaxVal = 20};
-    enum {Antenna, Cable};
-    enum {TV, DVD};
+//class Tv
+//{
+//public:
+//    friend class Remote;
+//    enum {Off, On};
+//    enum {MinVal, MaxVal = 20};
+//    enum {Antenna, Cable};
+//    enum {TV, DVD};
+//
+//    explicit Tv(int s = Off, int mc = 125) : state(s), volume(5), max_channel(mc), channel(2),
+//        mode(Cable), input(TV) {}
+//    void on_off() {state = (state == On) ? Off : On;}
+//    bool is_on() const {return state == On;}
+//    bool vol_up();
+////    void channel_up();
+//    void set_mode() {mode = (mode == Antenna)? Cable : Antenna;}
+//    virtual ~Tv()= default;
+//    void show_vol();
+//
+//private:
+//    int state;
+//    int volume;
+//    int max_channel;
+//    int channel;
+//    int mode;
+//    int input;
+//};
+//
+//class Remote
+//{
+//private:
+//    int mode;
+//public:
+//    explicit Remote(int m = Tv::TV) : mode(m) {}
+//    bool vol_up (Tv & t){return t.vol_up();}
+//    virtual ~Remote()= default;
+//};
 
-    explicit Tv(int s = Off, int mc = 125) : state(s), volume(5), max_channel(mc), channel(2),
-        mode(Cable), input(TV) {}
-    void on_off() {state = (state == On) ? Off : On;}
-    bool is_on() const {return state == On;}
-    bool vol_up();
-//    void channel_up();
-    void set_mode() {mode = (mode == Antenna)? Cable : Antenna;}
-    virtual ~Tv()= default;
-    void show_vol();
-
-private:
-    int state;
-    int volume;
-    int max_channel;
-    int channel;
-    int mode;
-    int input;
-};
-
-class Remote
-{
-private:
-    int mode;
-public:
-    explicit Remote(int m = Tv::TV) : mode(m) {}
-    bool vol_up (Tv & t){return t.vol_up();}
-    virtual ~Remote()= default;
-};
 #endif

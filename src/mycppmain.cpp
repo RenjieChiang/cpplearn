@@ -356,12 +356,12 @@
 //    my_directory.search();
 //    return 0;
 //}
-int main()
-{
-    Tv s42;
-    Remote grey;
-    s42.show_vol();
-    grey.vol_up(s42);
-    s42.show_vol();
-    return 0;
-}
+//int main()
+//{
+//    Tv s42;
+//    Remote grey;
+//    s42.show_vol();
+//    grey.vol_up(s42);
+//    s42.show_vol();
+//    return 0;
+//}
