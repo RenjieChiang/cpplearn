@@ -1,3 +1,3 @@
-/home/tianbot/my_cpp_learn/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/tianbot/my_cpp_learn/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/tianbot/my_cpp_learn/cmake-build-debug/CMakeFiles/my_cpp_learn.dir
+C:/Users/10372/CLionProjects/cpplearn/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/10372/CLionProjects/cpplearn/cmake-build-debug/CMakeFiles/my_cpp_learn.dir
+C:/Users/10372/CLionProjects/cpplearn/cmake-build-debug/CMakeFiles/rebuild_cache.dir
