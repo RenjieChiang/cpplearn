@@ -596,5 +596,99 @@
 //    items--;
 //    return true;
 //}
+baseDMA::baseDMA(const char * label_, int r)
+{
+    label = new char [std::strlen(label_) + 1];//strlen can not  contain /0
+    std::strcpy(label, label_);
+    rating = r;
+}
 
+baseDMA::baseDMA(const baseDMA &rs)
+{
+    label = new char [std::strlen(rs.label) + 1];
+    std::strcpy(label , rs.label);
+    rating = rs.rating;
+}
 
+baseDMA::~baseDMA() noexcept
+{
+    delete [] label;
+}
+
+baseDMA & baseDMA::operator=(const baseDMA &rs)
+{
+    if (this == &rs)
+        return *this;
+    delete [] label;
+    label = new char [std::strlen(rs.label) + 1];
+    strcpy(label, rs.label);
+    rating = rs.rating;
+    return *this;
+}
+
+std::ostream & operator<<(std::ostream &os, const baseDMA &rs)
+{
+    os << "lable:  " << rs.label << std::endl;
+    os << "rating:  " << rs.rating << std::endl;
+    return os;
+}
+
+lacksDMA::lacksDMA(const char *c, const char *label_, int r) : baseDMA(label_, r)
+{
+    std::strncpy(color, c, COL_LEN - 1);
+    color[COL_LEN - 1] = '\0';
+}
+
+lacksDMA::lacksDMA(const char *c, const baseDMA &rs) : baseDMA(rs)
+{
+    std::strncpy(color, c, COL_LEN - 1);
+    color[COL_LEN - 1] = '\0';
+}
+
+std::ostream & operator<<(std::ostream &os, const lacksDMA &ls)
+{
+    os << (const baseDMA &) ls;
+    os << "Color:  " << ls.color << std::endl;
+    return os;
+}
+
+hasDMA::hasDMA(const char *s, const char *label_, int r) : baseDMA(label_, r)
+{
+    style = new char [std::strlen(s) + 1];
+    std::strcpy(style, s);
+}
+
+hasDMA::hasDMA(const char *s, const baseDMA &rs) : baseDMA(rs)
+{
+    style = new char [std::strlen(s) + 1];
+    std::strcpy(style , s);
+}
+
+hasDMA::hasDMA(const hasDMA &rs) : baseDMA(rs)
+{
+    style = new char [std::strlen(rs.style) + 1];
+    std::strcpy(style , rs.style);
+}
+
+hasDMA::~hasDMA() noexcept
+{
+    delete [] style;
+}
+
+hasDMA & hasDMA::operator=(const hasDMA &rs)
+{
+    if (this == & rs)
+        return *this;
+    delete [] style;
+    baseDMA::operator=(rs);
+    style = new char [std::strlen(rs.style)];
+    std::strcpy(style, rs.style);
+    return *this;
+}
+
+std::ostream & operator<<(std::ostream &os, const hasDMA &hs)
+{
+    os << (const baseDMA &) hs;
+    os << "Color:  " << hs.style << std::endl;
+    return os;
+}

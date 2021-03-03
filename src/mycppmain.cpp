@@ -244,115 +244,119 @@
 //    std::cout << distance;
 //    return 0;
 //
+////}
+//using std::cout;
+//using std::cin;
+//using std::endl;
+//class teleDirectory
+//{
+//private:
+//    struct person
+//    {
+//        std::string first_name;
+//        std::string surname;
+//        std::string telephone_number;
+//    };
+//    enum {MAX_SIZE = 50};
+//    const int size;
+//    person * persons;
+//public:
+//    explicit teleDirectory(int size_ = MAX_SIZE);
+//    ~teleDirectory();
+//    void readData();
+//    void showData(std::ostream & os = cout) const;
+//    bool writeData(const std::string & filepath);
+//    void search() const;
+//};
+//
+//teleDirectory::teleDirectory(int size_) : size(size_)
+//{
+//    persons = new person [size];
 //}
-using std::cout;
-using std::cin;
-using std::endl;
-class teleDirectory
-{
-private:
-    struct person
-    {
-        std::string first_name;
-        std::string surname;
-        std::string telephone_number;
-    };
-    enum {MAX_SIZE = 50};
-    const int size;
-    person * persons;
-public:
-    explicit teleDirectory(int size_ = MAX_SIZE);
-    ~teleDirectory();
-    void readData();
-    void showData(std::ostream & os = cout) const;
-    bool writeData(const std::string & filepath);
-    void search() const;
-};
-
-teleDirectory::teleDirectory(int size_) : size(size_)
-{
-    persons = new person [size];
-}
-
-teleDirectory::~teleDirectory()
-{
-    delete [] persons;
-}
-
-void teleDirectory::readData()
-{
-    int i = 0;
-    for(;i < size;i++)
-    {
-        cout << "Enter No." << i+1 << "person:  (enter # to quit)" << endl;
-        cout << "       first name:" <<endl;
-        cin >> persons[i].first_name;
-        if (persons[i].first_name[0] == '#')
-            break;
-        cout << "       surname:" <<endl;
-        cin >> persons[i].surname;
-        if (persons[i].surname[0] == '#')
-            break;
-        cout << "       TeleNumber:" <<endl;
-        cin >> persons[i].telephone_number;
-        if (persons[i].telephone_number[0] == '#')
-            break;
-    }
-    if (i == size)
-        cout << "enough!";
-    cout << "Have entered "<<i<<" data"<<endl;
-}
-
-void teleDirectory::showData (std::ostream &os) const
-{
-    for (int i = 0; i < size; ++i)
-    {
-        os << "No." << i+1 <<"    name:    " << persons[i].first_name
-            << " " <<persons[i].surname << endl;
-        os << "TEL:   " << persons[i].telephone_number << endl;
-    }
-}
-
-bool teleDirectory::writeData(const std::string & filepath)
-{
-    std::ofstream my_ofs(filepath, std::ios_base::ate);//open file at end of it
-    if (!my_ofs.is_open())
-        return false;
-    showData(my_ofs);
-    my_ofs.close();
-    return true;
-}
-
-void teleDirectory::search() const
-{
-    for (int i = 0; i < 10; ++i)
-    {
-        cout << "begin search   enter surname(# to quit):" << endl;
-        std::string search_name;
-        cin >> search_name;
-        if (search_name[0] == '#')break;
-        for (int j = 0; j < size; ++j)
-        {
-            if (search_name == persons[j].surname)
-            {
-                cout << "name :" << persons[j].first_name << " " << persons[j].surname<<endl;
-                cout << "TEL:   " << persons[j].telephone_number << endl;
-            }
-        }
-        cout << "again? # to quit" << endl;
-    }
-}
-
+//
+//teleDirectory::~teleDirectory()
+//{
+//    delete [] persons;
+//}
+//
+//void teleDirectory::readData()
+//{
+//    int i = 0;
+//    for(;i < size;i++)
+//    {
+//        cout << "Enter No." << i+1 << "person:  (enter # to quit)" << endl;
+//        cout << "       first name:" <<endl;
+//        cin >> persons[i].first_name;
+//        if (persons[i].first_name[0] == '#')
+//            break;
+//        cout << "       surname:" <<endl;
+//        cin >> persons[i].surname;
+//        if (persons[i].surname[0] == '#')
+//            break;
+//        cout << "       TeleNumber:" <<endl;
+//        cin >> persons[i].telephone_number;
+//        if (persons[i].telephone_number[0] == '#')
+//            break;
+//    }
+//    if (i == size)
+//        cout << "enough!";
+//    cout << "Have entered "<<i<<" data"<<endl;
+//}
+//
+//void teleDirectory::showData (std::ostream &os) const
+//{
+//    for (int i = 0; i < size; ++i)
+//    {
+//        os << "No." << i+1 <<"    name:    " << persons[i].first_name
+//            << " " <<persons[i].surname << endl;
+//        os << "TEL:   " << persons[i].telephone_number << endl;
+//    }
+//}
+//
+//bool teleDirectory::writeData(const std::string & filepath)
+//{
+//    std::ofstream my_ofs(filepath, std::ios_base::ate);//open file at end of it
+//    if (!my_ofs.is_open())
+//        return false;
+//    showData(my_ofs);
+//    my_ofs.close();
+//    return true;
+//}
+//
+//void teleDirectory::search() const
+//{
+//    for (int i = 0; i < 10; ++i)
+//    {
+//        cout << "begin search   enter surname(# to quit):" << endl;
+//        std::string search_name;
+//        cin >> search_name;
+//        if (search_name[0] == '#')break;
+//        for (int j = 0; j < size; ++j)
+//        {
+//            if (search_name == persons[j].surname)
+//            {
+//                cout << "name :" << persons[j].first_name << " " << persons[j].surname<<endl;
+//                cout << "TEL:   " << persons[j].telephone_number << endl;
+//            }
+//        }
+//        cout << "again? # to quit" << endl;
+//    }
+//}
+//
+//int main()
+//{
+//    cout << "number of people:" << endl;
+//    int number;
+//    cin >> number;
+//    teleDirectory my_directory(number);
+//    my_directory.readData();
+//    my_directory.showData();
+//    if(my_directory.writeData("/home/tianbot/my_cpp_learn/mydata.txt"))
+//        cout << "success!" << endl;
+//    my_directory.search();
+//    return 0;
+//}
 int main()
 {
-    cout << "number of people:" << endl;
-    int number;
-    cin >> number;
-    teleDirectory my_directory(number);
-    my_directory.readData();
-    my_directory.showData();
-    if(my_directory.writeData("/home/tianbot/my_cpp_learn/mydata.txt"))
-        cout << "success!" << endl;
-    my_directory.search();
     return 0;
 }
