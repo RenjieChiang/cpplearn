@@ -596,5 +596,18 @@
 //    items--;
 //    return true;
 //}
+bool Tv::vol_up()
+{
+    if (volume <  MaxVal)
+    {
+        volume++;
+        return true;
+    } else
+        return false;
+}
 
+void Tv::show_vol()
+{
+    std::cout << volume << std::endl;
+}
 
