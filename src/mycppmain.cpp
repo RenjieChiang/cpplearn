@@ -356,7 +356,32 @@
 //    my_directory.search();
 //    return 0;
 //}
-int main()
-{
-    return 0;
-}
+//void outint(int n){std::cout << n << " ";}
+//int main()
+//{
+//    std::list<int> one(5,2);
+//    for (auto x : one) std::cout << x << " ";
+//    std::cout << std::endl;
+//    int stuff[5] = {1,2,3,4,8};
+//    std::list<int> two;
+//    two.insert(two.begin(), stuff, stuff + 5);
+//    std::for_each(two.begin(), two.end(), outint);//在algorith头文件
+//    std::cout << std::endl;
+//    std::list<int> three(two);
+//    three.remove(4);
+//    three.insert(three.end(), stuff, stuff+4);
+//    std::for_each(three.begin(), three.end(), outint);
+//    std::cout << std::endl;
+//    three.sort();
+//    std::for_each(three.begin(), three.end(), outint);
+//    std::cout << std::endl;
+//    three.unique();
+//    std::for_each(three.begin(), three.end(), outint);
+//    std::cout << std::endl;
+//    auto my_iterator = three.begin();
+//    for (int i = 0; i < three.size() - 2; ++i) my_iterator ++;
+//    three.splice(my_iterator, two);
+//    std::for_each(three.begin(), three.end(), outint);
+//    std::ostream_iterator<int,char> out(std::cout, " ");
+//    return 0;
+//}

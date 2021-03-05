@@ -8,6 +8,11 @@
 #include "cmath"
 #ifndef _MYCPP_
 #define _MYCPP_
+#include "list"
+#include "vector"
+#include "algorithm"
+#include "memory"
+#include "iterator"
 //template <typename AnyType>
 //void add( AnyType & a , AnyType & b)
 //{
@@ -185,46 +190,46 @@
 //};
 
 //base class USING dynamic memory assign
-class baseDMA {
-private:
-    char *label;
-    int rating;
-
-public:
-    baseDMA(const char *label_ = "null", int r = 0);
-
-    baseDMA(const baseDMA &rs);//copy constructor
-    virtual ~baseDMA();
-
-    baseDMA &operator=(const baseDMA &rs);
-
-    friend std::ostream &operator<<(std::ostream &os, const baseDMA &rs);
-};
-
-class lacksDMA : public baseDMA
-{
-private:
-    enum {COL_LEN = 40};
-    char color[COL_LEN];
-public:
-    lacksDMA(const char * c = "blank", const char * label_ = "null", int r = 0);
-    lacksDMA(const char * c, const baseDMA & rs);
-    friend std::ostream & operator<<(std::ostream & os, const lacksDMA & rs);
-    //can use default destructor
-//    ~lacksDMA(){};
-};
-
-class hasDMA : public baseDMA
-{
-private:
-    char * style;
-public:
-    hasDMA(const char * s = "none", const char * label_ = "null", int r = 0);
-    hasDMA(const char * s, const baseDMA & rs);
-    hasDMA(const hasDMA & rs);
-    ~hasDMA();
-    hasDMA & operator=(const hasDMA & rs);
-    friend std::ostream & operator<<(std::ostream & os, const hasDMA & rs);
-};
+//class baseDMA {
+//private:
+//    char *label;
+//    int rating;
+//
+//public:
+//    baseDMA(const char *label_ = "null", int r = 0);
+//
+//    baseDMA(const baseDMA &rs);//copy constructor
+//    virtual ~baseDMA();
+//
+//    baseDMA &operator=(const baseDMA &rs);
+//
+//    friend std::ostream &operator<<(std::ostream &os, const baseDMA &rs);
+//};
+//
+//class lacksDMA : public baseDMA
+//{
+//private:
+//    enum {COL_LEN = 40};
+//    char color[COL_LEN];
+//public:
+//    lacksDMA(const char * c = "blank", const char * label_ = "null", int r = 0);
+//    lacksDMA(const char * c, const baseDMA & rs);
+//    friend std::ostream & operator<<(std::ostream & os, const lacksDMA & rs);
+//    //can use default destructor
+////    ~lacksDMA(){};
+//};
+//
+//class hasDMA : public baseDMA
+//{
+//private:
+//    char * style;
+//public:
+//    hasDMA(const char * s = "none", const char * label_ = "null", int r = 0);
+//    hasDMA(const char * s, const baseDMA & rs);
+//    hasDMA(const hasDMA & rs);
+//    ~hasDMA();
+//    hasDMA & operator=(const hasDMA & rs);
+//    friend std::ostream & operator<<(std::ostream & os, const hasDMA & rs);
+//};
 
 #endif
