@@ -385,31 +385,90 @@
 //    std::ostream_iterator<int,char> out(std::cout, " ");
 //    return 0;
 //}
-template<class T>
-class Toobig
+//template<class T>
+//class Toobig
+//{
+//private:
+//    T cutoff;
+//public:
+//    explicit Toobig(const T & t) : cutoff(t){};
+//    bool operator()(const T & v){return v > cutoff;}
+//};
+//
+//void outint(int n){std::cout << n << " ";}
+//
+//int main()
+//{
+//    using std::cout;
+//    using std::list;
+//    using std::endl;
+//    Toobig<int> int100(100);
+//    int value[10] = {50, 100, 90, 180, 60, 210, 415, 88, 188, 201};
+//    list<int> one = {50, 100, 90, 180, 60, 210, 415, 88, 188, 201};
+//    list<int> two(value, value + 10);
+//    cout << "original list:" << endl;
+//    std::for_each(one.begin(), one.end(), outint);
+//    cout << endl;
+//    two.remove_if(int100);
+//    std::for_each(two.begin(), two.end(), outint);
+//    return 0;
+//}
+void readCameraData(const std::string & filename, std::vector<std::vector<float>> & cam_pose_)
 {
-private:
-    T cutoff;
-public:
-    explicit Toobig(const T & t) : cutoff(t){};
-    bool operator()(const T & v){return v > cutoff;}
-};
 
-void outint(int n){std::cout << n << " ";}
+    std::vector<float> single_pose;//使用两维动态数组，一个用于存各个pose，一个将他们集合起来，
+    std::ifstream myfile;
+    std::cout<<"opening data: "<<filename<<"\n";
+    myfile.open(filename,std::ios::in);
+    if (!myfile.is_open())
+        throw std::logic_error("Open file fail!");
+    int count = 0;
+    std::string temp;
+    //判断数据行数
+    while (std::getline(myfile,temp))
+    {
+        if(!temp.empty())
+        {
+            count++;
+        }
+    }
+    std::cout<<"共有"<<count<<"行数据"<<std::endl;
+    myfile.close();
+    float num[6];
+    myfile.open(filename,std::ios::in);
+    for(int i = 0; i < count; i ++)
+    {
+        for(float & j : num)
+        {
+            myfile>>j;
+        }
+        single_pose.push_back(10*num[0]+350);
+        single_pose.push_back(10*num[1]);
+        single_pose.push_back(10*num[2]+250);
+        single_pose.push_back(-3.14);
+        single_pose.push_back(0);
+        single_pose.push_back(num[5]/180*3.14-3.14/2);
+        //数据顺序为
+        // 0 1 2  3   4   5
+        // x y z r_r r_p r_y
+        cam_pose_.push_back(single_pose);
+        single_pose.clear();
+    }
+}
 
 int main()
 {
-    using std::cout;
-    using std::list;
-    using std::endl;
-    Toobig<int> int100(100);
-    int value[10] = {50, 100, 90, 180, 60, 210, 415, 88, 188, 201};
-    list<int> one = {50, 100, 90, 180, 60, 210, 415, 88, 188, 201};
-    list<int> two(value, value + 10);
-    cout << "original list:" << endl;
-    std::for_each(one.begin(), one.end(), outint);
-    cout << endl;
-    two.remove_if(int100);
-    std::for_each(two.begin(), two.end(), outint);
-    return 0;
+    std::vector<std::vector<float>> cam_pose;
+    try {
+        readCameraData("/home/tianbot/transdataTRUE", cam_pose);
+    }
+    catch (std::exception & e){
+        std::cout << "open file failed!!";
+    }
+    for (std::vector<float> & v_f : cam_pose)
+    {
+        for (float &f : v_f) std::cout << f << " ";
+        std::cout << std::endl;
+    }
+
 }

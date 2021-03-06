@@ -23,7 +23,7 @@
 // {
 //     return a+b ;
 // }
-#include "mycpp.h"
+//#include "mycpp.h"
 //template <typename AnyType>
 //void add( AnyType & a , AnyType & b)
 //{
