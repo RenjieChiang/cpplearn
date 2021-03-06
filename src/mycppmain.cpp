@@ -385,3 +385,31 @@
 //    std::ostream_iterator<int,char> out(std::cout, " ");
 //    return 0;
 //}
+template<class T>
+class Toobig
+{
+private:
+    T cutoff;
+public:
+    explicit Toobig(const T & t) : cutoff(t){};
+    bool operator()(const T & v){return v > cutoff;}
+};
+
+void outint(int n){std::cout << n << " ";}
+
+int main()
+{
+    using std::cout;
+    using std::list;
+    using std::endl;
+    Toobig<int> int100(100);
+    int value[10] = {50, 100, 90, 180, 60, 210, 415, 88, 188, 201};
+    list<int> one = {50, 100, 90, 180, 60, 210, 415, 88, 188, 201};
+    list<int> two(value, value + 10);
+    cout << "original list:" << endl;
+    std::for_each(one.begin(), one.end(), outint);
+    cout << endl;
+    two.remove_if(int100);
+    std::for_each(two.begin(), two.end(), outint);
+    return 0;
+}
