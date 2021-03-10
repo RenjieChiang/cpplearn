@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/tianbot/my_cpp_learn/src/mycpp.h
+iostream
+/home/tianbot/my_cpp_learn/src/iostream
+fstream
+/home/tianbot/my_cpp_learn/src/fstream
+cstdlib
+/home/tianbot/my_cpp_learn/src/cstdlib
+cstring
+/home/tianbot/my_cpp_learn/src/cstring
+string
+/home/tianbot/my_cpp_learn/src/string
+sstream
+/home/tianbot/my_cpp_learn/src/sstream
+ctime
+/home/tianbot/my_cpp_learn/src/ctime
+cmath
+/home/tianbot/my_cpp_learn/src/cmath
+
+/home/tianbot/my_cpp_learn/src/mycppmain.cpp
+mycpp.h
+/home/tianbot/my_cpp_learn/src/mycpp.h
+

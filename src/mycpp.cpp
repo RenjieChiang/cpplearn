@@ -596,6 +596,7 @@
 //    items--;
 //    return true;
 //}
+<<<<<<< HEAD
 //baseDMA::baseDMA(const char * label_, int r)
 //{
 //    label = new char [std::strlen(label_) + 1];//strlen can not  contain /0
@@ -692,3 +693,20 @@
 //    os << "Color:  " << hs.style << std::endl;
 //    return os;
 //}
+=======
+//bool Tv::vol_up()
+//{
+//    if (volume <  MaxVal)
+//    {
+//        volume++;
+//        return true;
+//    } else
+//        return false;
+//}
+//
+//void Tv::show_vol()
+//{
+//    std::cout << volume << std::endl;
+//}
+
+>>>>>>> win10509
