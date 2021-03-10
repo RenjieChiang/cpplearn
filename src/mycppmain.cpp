@@ -342,8 +342,7 @@
 //        cout << "again? # to quit" << endl;
 //    }
 //}
-<<<<<<< HEAD
-=======
+
 //using std::cout;
 //using std::cin;
 //using std::endl;
@@ -441,7 +440,7 @@
 //        cout << "again? # to quit" << endl;
 //    }
 //}
->>>>>>> win10509
+
 //
 //int main()
 //{
@@ -456,7 +455,7 @@
 //    my_directory.search();
 //    return 0;
 //}
-<<<<<<< HEAD
+
 //void outint(int n){std::cout << n << " ";}
 //int main()
 //{
@@ -640,7 +639,7 @@ int main()
     calculate(cam_pose, rob_pose);
 
 }
-=======
+
 //int main()
 //{
 //    Tv s42;
@@ -650,4 +649,4 @@ int main()
 //    s42.show_vol();
 //    return 0;
 //}
->>>>>>> win10509
+

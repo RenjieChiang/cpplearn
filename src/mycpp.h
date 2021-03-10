@@ -188,7 +188,7 @@
 //    bool enQueue(const Item &item_);
 //    bool deQueue(Item &item_);
 //};
-<<<<<<< HEAD
+
 
 //base class USING dynamic memory assign
 //class baseDMA {
@@ -231,7 +231,7 @@
 //    ~hasDMA();
 //    hasDMA & operator=(const hasDMA & rs);
 //    friend std::ostream & operator<<(std::ostream & os, const hasDMA & rs);
-=======
+
 //class Tv
 //{
 //public:
@@ -267,8 +267,7 @@
 //public:
 //    explicit Remote(int m = Tv::TV) : mode(m) {}
 //    bool vol_up (Tv & t){return t.vol_up();}
-//    virtual ~Remote()= default;
->>>>>>> win10509
+
 //};
 
 #endif
