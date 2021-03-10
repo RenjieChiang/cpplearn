@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/10372/CLionProjects/cpplearn/src/mycpp.cpp
-mycpp.h
-C:/Users/10372/CLionProjects/cpplearn/src/mycpp.h
-mycpp.h
-C:/Users/10372/CLionProjects/cpplearn/src/mycpp.h
-
 C:/Users/10372/CLionProjects/cpplearn/src/mycpp.h
 iostream
 C:/Users/10372/CLionProjects/cpplearn/src/iostream
@@ -28,21 +22,17 @@ C:/Users/10372/CLionProjects/cpplearn/src/sstream
 ctime
 C:/Users/10372/CLionProjects/cpplearn/src/ctime
 cmath
-<<<<<<< HEAD
-/home/tianbot/my_cpp_learn/src/cmath
-list
-/home/tianbot/my_cpp_learn/src/list
-vector
-/home/tianbot/my_cpp_learn/src/vector
-algorithm
-/home/tianbot/my_cpp_learn/src/algorithm
-memory
-/home/tianbot/my_cpp_learn/src/memory
-iterator
-/home/tianbot/my_cpp_learn/src/iterator
-=======
 C:/Users/10372/CLionProjects/cpplearn/src/cmath
->>>>>>> win10509
+list
+C:/Users/10372/CLionProjects/cpplearn/src/list
+vector
+C:/Users/10372/CLionProjects/cpplearn/src/vector
+algorithm
+C:/Users/10372/CLionProjects/cpplearn/src/algorithm
+memory
+C:/Users/10372/CLionProjects/cpplearn/src/memory
+iterator
+C:/Users/10372/CLionProjects/cpplearn/src/iterator
 
 C:/Users/10372/CLionProjects/cpplearn/src/mycppmain.cpp
 mycpp.h

@@ -554,6 +554,7 @@ void readCameraData(const std::string & filename, std::vector<std::vector<float>
         cam_pose_.push_back(single_pose);
         single_pose.clear();
     }
+    myfile.close();
 }
 
 double generalModelSin8(const double p_[][3], double x)
@@ -566,19 +567,35 @@ double generalModelSin8(const double p_[][3], double x)
     return result;
 }
 
-double linearModelPoly9(const double *p_, const double x)
+double linearModelPoly9(const double *p_,  double x)
 {
     double result;
+    x = x/4;
     result = p_[0] * pow(x,9) + p_[1] * pow(x,8) + p_[2] * pow(x,7)
              + p_[3] * pow(x,6) + p_[4] * pow(x,5) + p_[5] * pow(x,4)
              + p_[6] * pow(x,3) + p_[7] * pow(x,2) + p_[8] * x + p_[9];
     return result;
 }
 
+double linearModelPoly4(const double *p_,  double x)
+{
+    double result;
+    x = x/4;
+    result = p_[0] * pow(x,4) + p_[1] * pow(x,3) + p_[2] * pow(x,2)
+             + p_[3] * pow(x,1) + p_[4] ;
+//             + p_[3] * pow(x,6) + p_[4] * pow(x,5) + p_[5] * pow(x,4)
+//             + p_[6] * pow(x,3) + p_[7] * pow(x,2) + p_[8] * x + p_[9];
+    return result;
+}
+
 //计算拟合与插值后的数据
 void calculate(const std::vector<std::vector<float>> & cam_pose_, std::vector<std::vector<float>> & rob_pose_)
 {
-    double x_poly9_p[10] = {1.611e-18, -2.188e-15, 1.241e-12, -3.799e-10, 6.792e-8, -7.219e-6, 0.0004906, -0.03177, 1.502, -8.661};
+    //第一次 原9次拟合 1：300
+//    double x_poly9_p[10] = {1.611e-18, -2.188e-15, 1.241e-12, -3.799e-10, 6.792e-8, -7.219e-6, 0.0004906, -0.03177, 1.502, -8.661};
+//      第二次 9次拟合 1：75
+//    double x_poly9_p[10] = {4.223e-13, -1.434e-10, 2.033e-8, -1.556e-6, 6.955e-5, -0.001848, 0.0314, -0.5084, 6.01, -8.661 };
+    double x_poly4_p[5] = { -8.249e-6, 0.003244, -0.2702, 4.982, -7.106};
     double y_sin8_p[8][3] = {
             {4.103, 0.01957, -0.7143}, {4.271, 0.1045, 4.75}, {3, 0.03997, -0.2004},
             {2.26, 0.0601, 0.7872}, {6.961, 0.09453, 2.871}, {3.335, 0.07773, 1.978},
@@ -595,7 +612,8 @@ void calculate(const std::vector<std::vector<float>> & cam_pose_, std::vector<st
     temp.reserve(6);
     for (int i = 0; i < 2 * cam_pose_.size() - 1; ++i) //因为方便插值而排除了最后一个数据
     {
-        temp.push_back(linearModelPoly9(x_poly9_p, i/2.0));
+//        temp.push_back(linearModelPoly9(x_poly9_p, i/2.0));
+        temp.push_back(linearModelPoly4(x_poly4_p, i/2.0));
         temp.push_back(generalModelSin8(y_sin8_p, i/2.0));
         temp.push_back(generalModelSin8(z_sin8_p, i/2.0));
         temp.push_back((cam_pose_[i/2][3] + cam_pose_[(i+1)/2][3])/2.0);//线性插值
@@ -607,8 +625,9 @@ void calculate(const std::vector<std::vector<float>> & cam_pose_, std::vector<st
     int i = 0;
     for (const auto & f_v : rob_pose_)
     {
-        std::cout << "第" << i+1 << "行  :  ";
-        for (auto f : f_v) std::cout << f << "  ";
+        std::cout << f_v[0] ;
+//        std::cout << "第" << i+1 << "行  :  ";
+//        for (auto f : f_v) std::cout << f << "  ";
         std::cout << std::endl;
         i++;
     }
@@ -626,7 +645,7 @@ int main()
     std::vector<std::vector<float>> cam_pose;
     std::vector<std::vector<float>> rob_pose;
     try {
-        readCameraData("/home/tianbot/cam_Data_20210310", cam_pose);
+        readCameraData(R"(C:\Users\10372\CLionProjects\cpplearn\cam_Data_20210310.txt)", cam_pose);
     }
     catch (std::exception & e){
         std::cout << "open file failed!!";
